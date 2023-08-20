@@ -1,5 +1,5 @@
 <script>
-    var alias, value;
+    var alias, value, pin;
 
     const cookies = document.cookie.split('/').reduce((res, c) => {
         const [key, val] = c.trim().split('=').map(decodeURIComponent)
@@ -23,8 +23,8 @@
         } else if (!accounts[cookies['email']] != cookies['password']) {
             window.location.href = '/';
         }
-        console.log(`redirecting to ${backendHost}/update-value/${alias}/${value}`)
-        window.location.href = `${backendHost}/update-value/${alias}/${value}` 
+        console.log(`redirecting to ${backendHost}/update-value/${alias}/${pin}/${value}`)
+        window.location.href = `${backendHost}/update-value/${alias}/${pin}/${value}` 
     }
 </script>
 
@@ -37,7 +37,8 @@
             <input bind:value={alias} class="form__field" type="text" id="alias" name="alias" placeholder="Alias" required><br>
             <label for="value">Value</label><br>
             <input bind:value={value} class="form__field" type="text" id="value" name="value" placeholder="Value" required><br>
-    
+            <label for="pin">PIN</label><br>
+            <input bind:value={pin} class="form__field" type="text" id="pin" name="pin" placeholder="PIN" required><br>
             <br><button on:click={submit}>Submit</button>
     </div>
 </main>
